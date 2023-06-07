@@ -1,0 +1,26 @@
+import psycopg2
+
+
+conn = psycopg2.connect(
+    host="localhost",
+    port=5433,
+    database="master",
+    user="postgres",
+    password="Sikesh@1998"
+)
+
+
+cur = conn.cursor()
+
+
+cur.execute("SELECT * FROM public.employees")
+rows = cur.fetchall()
+
+
+for row in rows:
+    cur.execute("INSERT INTO private.second VALUES (%s, %s, %s)", row)
+
+
+conn.commit()
+cur.close()
+conn.close()
