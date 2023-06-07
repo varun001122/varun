@@ -1,0 +1,9 @@
+import psycopg2
+connection=psycopg2.connect(user="postgres",
+                            password="Admin"
+                            host="localhost"
+                            port="5433"
+                            database="master")
+cursor=connection.cursor()
+cursor.execute("select*from student")
+cursor.fetchall()
